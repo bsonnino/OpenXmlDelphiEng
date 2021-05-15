@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{C0B9855C-290F-4410-8DAA-ED6A74178602}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="OpenFile\OpenFile.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CreateSimple\CreateSimple.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CreateComplex\CreateComplex.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="OpenFile">
+        <MSBuild Projects="OpenFile\OpenFile.dproj"/>
+    </Target>
+    <Target Name="OpenFile:Clean">
+        <MSBuild Projects="OpenFile\OpenFile.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="OpenFile:Make">
+        <MSBuild Projects="OpenFile\OpenFile.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CreateSimple">
+        <MSBuild Projects="CreateSimple\CreateSimple.dproj"/>
+    </Target>
+    <Target Name="CreateSimple:Clean">
+        <MSBuild Projects="CreateSimple\CreateSimple.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CreateSimple:Make">
+        <MSBuild Projects="CreateSimple\CreateSimple.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CreateComplex">
+        <MSBuild Projects="CreateComplex\CreateComplex.dproj"/>
+    </Target>
+    <Target Name="CreateComplex:Clean">
+        <MSBuild Projects="CreateComplex\CreateComplex.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CreateComplex:Make">
+        <MSBuild Projects="CreateComplex\CreateComplex.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="OpenFile;CreateSimple;CreateComplex"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="OpenFile:Clean;CreateSimple:Clean;CreateComplex:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="OpenFile:Make;CreateSimple:Make;CreateComplex:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
